@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare - Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand fw-bold fs-4 text-dark" href="index.html">Mediox</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="medicines.html">Medicines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart <span class="badge bg-danger" id="cart-badge">0</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="myorders.html">My Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section class="page-content">
+            <h1>Contact Support</h1>
+            <p>Reach pharmacy specialists for help, inquiries, or urgent prescription support.</p>
+        </section>
+    </main>
+    <div class="doctor-widget">
+        <button id="talk-doctor-btn" class="doctor-btn">Talk to your doctor</button>
+    </div>
+    <div id="doctor-modal-overlay" class="doctor-modal-overlay">
+        <div class="doctor-modal">
+            <h3>Talk to your doctor</h3>
+            <p>Choose your preferred contact option:</p>
+            <div class="doctor-modal-actions">
+                <a class="doctor-btn whatsapp" href="https://wa.me/917893458943?text=Hello%20Doctor" target="_blank" rel="noopener">WhatsApp 7893458943</a>
+                <a class="doctor-btn call" href="tel:7893458943">Call 7893458943</a>
+            </div>
+            <button id="doctor-modal-close" class="doctor-modal-close">Close</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

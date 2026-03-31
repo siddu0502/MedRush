@@ -1,0 +1,1324 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f1f1;
+    color: #1a1a1a;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+main {
+    margin-left: 0;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-content {
+    max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1a1a1a;
+    margin: 0 0 0.8rem 0;
+    letter-spacing: 0.01em;
+}
+
+h1 {
+    color: #333333;
+    font-size: 2.4rem;
+}
+
+h2 {
+    color: #333333;
+    font-size: 1.8rem;
+}
+
+h3 {
+    color: #333333;
+    font-size: 1.3rem;
+}
+
+.navbar, .quick-card, .page-content, .hero {
+    color: #1a1a1a;
+}
+
+.nav-link {
+    color: #1a1a1a;
+}
+
+/* Bootstrap Navbar Customization */
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 2px solid #e65c00;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    color: #1a1a1a !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+}
+
+.navbar .nav-link {
+    color: #1a1a1a !important;
+    font-weight: 500;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    margin-left: 0.5rem;
+    text-decoration: none;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    text-decoration-color: transparent;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #ffa500 !important;
+    text-decoration-color: #ffa500;
+}
+
+.navbar .nav-link.active {
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    border: 2px solid #e65c00 !important;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23e65c00' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar .badge {
+    background-color: #dc3545 !important;
+    font-weight: 700;
+    margin-left: 0.35rem;
+}
+
+
+
+/* Page Content */
+.hero {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: #f7f7f7;
+    border-radius: 12px;
+    margin: 1.8rem 0;
+    border: 1px solid #e2e2e2;
+}
+
+.hero h1 {
+    font-size: 2.3rem;
+    margin-bottom: 0.8rem;
+    color: #1a1a1a;
+}
+
+.hero p {
+    font-size: 1.05rem;
+    color: #555;
+}
+
+.page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+.page-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.page-content p {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+}
+
+.quick-actions {
+    background: #f3f3f3;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1.4rem;
+    margin-top: 1.5rem;
+}
+
+.quick-actions h2 {
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.quick-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.quick-card {
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 10px;
+    padding: 1.1rem;
+    border: 1px solid #ccc;
+}
+
+.quick-card h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.25rem;
+}
+
+.quick-card p {
+    margin-bottom: 1rem;
+    color: #3a3a3a;
+}
+
+.action-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #1ba9bf;
+    color: #ffffff;
+    border: 0;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.15s ease;
+}
+
+.action-btn.secondary {
+    background: #080505;
+    margin-top: 0.75rem;
+}
+
+.action-btn:hover {
+    background: #f9f4f2;
+    
+}
+
+.camera-preview {
+    margin-top: 0.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.camera-preview.hidden {
+    display: none;
+}
+
+.camera-preview video {
+    width: 100%;
+    height: auto;
+}
+
+/* Responsive Design - Mobile First Approach */
+@media (max-width: 576px) {
+    /* Navbar adjustments */
+    .navbar-brand {
+        font-size: 1.3rem !important;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+    
+    /* Hero section */
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem;
+    }
+    
+    /* Page content */
+    .page-content {
+        padding: 1rem;
+    }
+    
+    .page-content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .page-content p {
+        font-size: 0.95rem;
+    }
+    
+    /* Quick actions */
+    .quick-actions {
+        padding: 1rem;
+    }
+    
+    .quick-actions h2 {
+        font-size: 1.3rem;
+    }
+    
+    .quick-cards {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .quick-card {
+        padding: 1rem;
+    }
+    
+    .quick-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .quick-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Medicine search */
+    .medicine-search {
+        gap: 0.5rem;
+    }
+    
+    .medicine-search input {
+        font-size: 0.95rem;
+        padding: 0.7rem 0.9rem;
+    }
+    
+    .medicine-search button {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.6rem 0.9rem;
+    }
+    
+    /* Medicine results */
+    .medicine-results {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .medicine-card {
+        padding: 0.8rem;
+    }
+    
+    .medicine-card h4 {
+        font-size: 1rem;
+    }
+    
+    .medicine-card p {
+        font-size: 0.85rem;
+    }
+    
+    /* Action buttons */
+    .action-btn {
+        width: 100%;
+        text-align: center;
+        font-size: 0.9rem;
+        padding: 0.55rem 0.9rem;
+    }
+    
+    /* Doctor widget */
+    .doctor-widget {
+        right: 0.5rem;
+        bottom: 0.5rem;
+    }
+    
+    .doctor-widget .doctor-btn {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+    }
+    
+    .doctor-modal {
+        width: min(100%, calc(100% - 1.5rem));
+        padding: 1rem;
+    }
+    
+    .doctor-modal h3 {
+        font-size: 1.1rem;
+    }
+    
+    .doctor-modal p {
+        font-size: 0.9rem;
+    }
+    
+    .doctor-modal-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .doctor-modal-actions a {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.5rem 0.6rem;
+    }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 577px) and (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .quick-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .medicine-results {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .doctor-modal {
+        width: min(400px, calc(100% - 2rem));
+    }
+}
+
+/* Small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    main {
+        max-width: 100%;
+        padding: 1.2rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.1rem;
+    }
+    
+    .quick-cards {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    
+    .medicine-results {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+}
+
+/* Large screens */
+@media (min-width: 1025px) {
+    main {
+        max-width: 1200px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .doctor-widget,
+    .quick-actions,
+    .medicine-search button,
+    .action-btn {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    main {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* Utility classes for responsiveness */
+.responsive-text-small {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.responsive-padding {
+    padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 1rem;
+}
+
+/* Existing media queries consolidated */
+@media (max-width: 768px) {
+    .navbar {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        height: auto;
+    }
+    
+    main {
+        margin-left: 0;
+        padding-top: 4.5rem;
+    }
+    
+    .nav-menu {
+        gap: 0.5rem;
+    }
+    
+    .nav-link {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .page-content {
+        padding: 1rem;
+    }
+    
+    .quick-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Additional responsive utilities */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem !important;
+    }
+    
+    .action-btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+    
+    .doctor-btn {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.7rem;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .navbar {
+        height: auto;
+    }
+    
+    .hero {
+        padding: 1.5rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .doctor-widget {
+        bottom: 0.3rem;
+        right: 0.3rem;
+    }
+}
+
+/* Fix for Bootstrap table responsiveness on mobile */
+@media (max-width: 576px) {
+    .table-responsive {
+        border-radius: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table {
+        font-size: 0.85rem;
+        min-width: 600px;
+    }
+    
+    .card {
+        padding: 0.75rem;
+    }
+    
+    .form-control {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+    .nav-link,
+    .action-btn,
+    .doctor-btn,
+    button,
+    a {
+        min-height: 44px;
+    }
+    
+    input,
+    select,
+    textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Smooth transitions for responsive elements */
+.hero,
+.page-content,
+.quick-card,
+.medicine-card {
+    transition: all 0.3s ease;
+}
+
+/* Ensure images and videos are responsive */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent horizontal scroll */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Box-sizing for better layout control */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.medicine-search {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.medicine-search input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #000;
+    background: #fff;
+}
+
+.medicine-search button {
+    width: fit-content;
+    border: 0;
+    border-radius: 8px;
+    background: #ff6b35;
+    color: #fff;
+    padding: 0.65rem 1rem;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+}
+
+.compatibility-note {
+    margin-top: 0.55rem;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.medicine-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+}
+
+.medicine-card {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0.9rem;
+    color: #1a1a1a;
+}
+
+.medicine-card h4 {
+    margin: 0 0 0.35rem 0;
+    color: #1a1a1a;
+}
+
+.medicine-card p {
+    margin: 0.2rem 0;
+    font-size: 0.92rem;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        height: auto;
+    }
+    
+    main {
+        margin-left: 0;
+        padding-top: 4.5rem;
+    }
+    
+    .nav-menu {
+        gap: 0.5rem;
+    }
+    
+    .nav-link {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .page-content {
+        padding: 1rem;
+    }
+}
+
+/* Responsive Design - Mobile First Approach */
+@media (max-width: 576px) {
+    /* Navbar adjustments */
+    .navbar-brand {
+        font-size: 1.3rem !important;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+    
+    /* Hero section */
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem;
+    }
+    
+    /* Page content */
+    .page-content {
+        padding: 1rem;
+    }
+    
+    .page-content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .page-content p {
+        font-size: 0.95rem;
+    }
+    
+    /* Quick actions */
+    .quick-actions {
+        padding: 1rem;
+    }
+    
+    .quick-actions h2 {
+        font-size: 1.3rem;
+    }
+    
+    .quick-cards {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .quick-card {
+        padding: 1rem;
+    }
+    
+    .quick-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .quick-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Medicine search */
+    .medicine-search {
+        gap: 0.5rem;
+    }
+    
+    .medicine-search input {
+        font-size: 0.95rem;
+        padding: 0.7rem 0.9rem;
+    }
+    
+    .medicine-search button {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.6rem 0.9rem;
+    }
+    
+    /* Medicine results */
+    .medicine-results {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .medicine-card {
+        padding: 0.8rem;
+    }
+    
+    .medicine-card h4 {
+        font-size: 1rem;
+    }
+    
+    .medicine-card p {
+        font-size: 0.85rem;
+    }
+    
+    /* Action buttons */
+    .action-btn {
+        width: 100%;
+        text-align: center;
+        font-size: 0.9rem;
+        padding: 0.55rem 0.9rem;
+    }
+    
+    /* Doctor widget */
+    .doctor-widget {
+        right: 0.5rem;
+        bottom: 0.5rem;
+    }
+    
+    .doctor-widget .doctor-btn {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+    }
+    
+    .doctor-modal {
+        width: min(100%, calc(100% - 1.5rem));
+        padding: 1rem;
+    }
+    
+    .doctor-modal h3 {
+        font-size: 1.1rem;
+    }
+    
+    .doctor-modal p {
+        font-size: 0.9rem;
+    }
+    
+    .doctor-modal-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .doctor-modal-actions a {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.5rem 0.6rem;
+    }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 577px) and (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .quick-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .medicine-results {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .doctor-modal {
+        width: min(400px, calc(100% - 2rem));
+    }
+}
+
+/* Small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    main {
+        max-width: 100%;
+        padding: 1.2rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.1rem;
+    }
+    
+    .quick-cards {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    
+    .medicine-results {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+}
+
+/* Large screens */
+@media (min-width: 1025px) {
+    main {
+        max-width: 1200px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .doctor-widget,
+    .quick-actions,
+    .medicine-search button,
+    .action-btn {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    main {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* Utility classes for responsiveness */
+.responsive-text-small {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.responsive-padding {
+    padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 1rem;
+}
+
+/* Additional responsive utilities */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem !important;
+    }
+    
+    .action-btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+    
+    .doctor-btn {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.7rem;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .navbar {
+        height: auto;
+    }
+    
+    .hero {
+        padding: 1.5rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .doctor-widget {
+        bottom: 0.3rem;
+        right: 0.3rem;
+    }
+}
+
+/* Fix for Bootstrap table responsiveness on mobile */
+@media (max-width: 576px) {
+    .table-responsive {
+        border-radius: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table {
+        font-size: 0.85rem;
+        min-width: 600px;
+    }
+    
+    .card {
+        padding: 0.75rem;
+    }
+    
+    .form-control {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+    .nav-link,
+    .action-btn,
+    .doctor-btn,
+    button,
+    a {
+        min-height: 44px;
+    }
+    
+    input,
+    select,
+    textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Smooth transitions for responsive elements */
+.hero,
+.page-content,
+.quick-card,
+.medicine-card {
+    transition: all 0.3s ease;
+}
+
+/* Ensure images and videos are responsive */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent horizontal scroll */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Box-sizing for better layout control */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.doctor-widget {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    background: transparent;
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 0;
+    z-index: 1100;
+}
+
+.doctor-widget .doctor-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    border: none;
+    background: linear-gradient(135deg, #ff6b35, #ff8f5a);
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.doctor-widget .doctor-btn:hover {
+    transform: translateY(-1px);
+}
+
+.doctor-widget .doctor-btn:focus {
+    outline: 2px solid rgba(255,255,255,0.85);
+    outline-offset: 2px;
+}
+
+.doctor-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.doctor-modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.doctor-modal {
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 10px;
+    width: min(420px, calc(100% - 2rem));
+    padding: 1.2rem 1.25rem;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+
+@keyframes pulseIn {
+    from { transform: translateY(5px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.doctor-modal h3 {
+    margin: 0 0 0.8rem 0;
+    color: #111;
+}
+
+.doctor-modal p {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.doctor-modal-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.doctor-modal-actions a {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background: #ff6b35;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.doctor-modal-actions a.call {
+    background: #222;
+}
+
+.doctor-modal-close {
+    margin-top: 0.8rem;
+    background: #e0e0e0;
+    border-radius: 8px;
+    color: #000;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .doctor-widget {
+        right: 0.6rem;
+        bottom: 0.6rem;
+        min-width: auto;
+    }
+    
+    /* Ensure doctor modal is fully responsive */
+    .doctor-modal-overlay {
+        padding: 0.5rem;
+    }
+}
+
+/* Additional responsive improvements */
+@media (max-width: 576px) {
+    /* Better spacing on mobile */
+    section {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Improve form elements on mobile */
+    .form-control,
+    .form-select {
+        font-size: 16px;
+        padding: 0.7rem 0.9rem;
+    }
+    
+    /* Better card layouts */
+    .card {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .card-header {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .card-body {
+        padding: 0.75rem;
+    }
+    
+    /* Badge adjustments */
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.25em 0.5em;
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 577px) and (max-width: 1024px) {
+    .container-fluid {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    
+    main {
+        padding: 1.5rem;
+    }
+}
+
+/* Ensure consistent navbar behavior */
+.navbar-collapse {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-top: 1px solid #e65c00;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Responsive container adjustments */
+.container-fluid {
+    width: 100%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container-fluid {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-fluid {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-fluid {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-fluid {
+        max-width: 1140px;
+    }
+}
+
+/* Flexbox utilities for responsive layouts */
+.d-responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+@media (max-width: 576px) {
+    .d-responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Visibility utilities */
+.show-mobile {
+    display: none;
+}
+
+.hide-mobile {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .show-mobile {
+        display: block;
+    }
+    
+    .hide-mobile {
+        display: none;
+    }
+}
+
+/* Spacing utilities for responsive design */
+@media (max-width: 576px) {
+    .mb-mobile-sm {
+        margin-bottom: 0.5rem;
+    }
+    
+    .mb-mobile-md {
+        margin-bottom: 1rem;
+    }
+    
+    .mb-mobile-lg {
+        margin-bottom: 1.5rem;
+    }
+    
+    .p-mobile-sm {
+        padding: 0.5rem;
+    }
+    
+    .p-mobile-md {
+        padding: 1rem;
+    }
+    
+    .p-mobile-lg {
+        padding: 1.5rem;
+    }
+}
