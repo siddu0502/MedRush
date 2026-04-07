@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MedRush</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-header-container">
+            <!-- Logo -->
+            <div class="admin-logo">
+                <video class="logo-video" autoplay muted loop playsinline>
+                    <source src="../assets/logo2.mp4" type="video/mp4">
+                </video>
+                <h1>Admin Panel</h1>
+            </div>
+
+            <!-- Admin Navigation -->
+            <nav class="admin-nav">
+                <ul class="admin-nav-list">
+                    <li><a href="admin-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="admin-medicines.html"><i class="fas fa-pills"></i> Medicines</a></li>
+                    <li><a href="admin-orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="admin-users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin-reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <!-- Admin Controls -->
+            <div class="admin-controls">
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-content">
+            <div class="admin-profile">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-info">
+                    <h3>Admin User</h3>
+                    <p>admin@medrush.com</p>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <h4>Quick Actions</h4>
+                <ul>
+                    <li><a href="#add-medicine"><i class="fas fa-plus"></i> Add Medicine</a></li>
+                    <li><a href="#view-orders"><i class="fas fa-eye"></i> View Orders</a></li>
+                    <li><a href="#manage-users"><i class="fas fa-user-cog"></i> Manage Users</a></li>
+                    <li><a href="#inventory"><i class="fas fa-warehouse"></i> Inventory</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Admin Content -->
+    <main class="admin-main">
+        <div class="admin-content">
+            <!-- Dashboard Overview -->
+            <section class="dashboard-overview">
+                <h2>Dashboard Overview</h2>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Medicines</h3>
+                            <p class="stat-number">248</p>
+                            <span class="stat-change positive">+12% this month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Orders</h3>
+                            <p class="stat-number">1,847</p>
+                            <span class="stat-change positive">+23% this month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Users</h3>
+                            <p class="stat-number">3,291</p>
+                            <span class="stat-change positive">+8% this month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Revenue</h3>
+                            <p class="stat-number">₹4,82,950</p>
+                            <span class="stat-change positive">+15% this month</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Orders -->
+            <section class="recent-orders">
+                <div class="section-header">
+                    <h3>Recent Orders</h3>
+                    <a href="admin-orders.html" class="view-all-btn">View All</a>
+                </div>
+                
+                <div class="orders-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Medicines</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-001</td>
+                                <td>Rahul Sharma</td>
+                                <td>Paracetamol, Vitamin C</td>
+                                <td>₹450</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>2026-04-06</td>
+                                <td>
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-002</td>
+                                <td>Priya Patel</td>
+                                <td>Aspirin, Cough Syrup</td>
+                                <td>₹320</td>
+                                <td><span class="status processing">Processing</span></td>
+                                <td>2026-04-06</td>
+                                <td>
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-003</td>
+                                <td>Amit Kumar</td>
+                                <td>Ibuprofen, Vitamin D</td>
+                                <td>₹580</td>
+                                <td><span class="status delivered">Delivered</span></td>
+                                <td>2026-04-05</td>
+                                <td>
+                                    <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h3>Quick Actions</h3>
+                <div class="actions-grid">
+                    <div class="action-card">
+                        <i class="fas fa-plus-circle"></i>
+                        <h4>Add New Medicine</h4>
+                        <p>Add new medicines to inventory</p>
+                        <button class="action-primary-btn">Add Medicine</button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <i class="fas fa-warehouse"></i>
+                        <h4>Manage Inventory</h4>
+                        <p>Check stock levels and availability</p>
+                        <button class="action-primary-btn">Manage Stock</button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>View Reports</h4>
+                        <p>Generate sales and inventory reports</p>
+                        <button class="action-primary-btn">View Reports</button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <i class="fas fa-user-plus"></i>
+                        <h4>Add User</h4>
+                        <p>Create new user accounts</p>
+                        <button class="action-primary-btn">Add User</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Admin Footer -->
+    <footer class="admin-footer">
+        <div class="admin-footer-content">
+            <p>&copy; 2026 MedRush Admin Panel. All rights reserved.</p>
+            <div class="admin-footer-links">
+                <a href="#">Help</a>
+                <a href="#">Documentation</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="admin-auth.js"></script>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+/* Contact page specific styles */
+.contact-hero {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #00a5cc 100%);
+    color: #ffffff;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.contact-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-section {
+    padding: 2rem;
+    background-color: #ffffff;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.contact-info h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-right: 1rem;
+    margin-top: 0.25rem;
+}
+
+.info-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.info-item p {
+    color: #6c757d;
+    margin: 0;
+}
+
+.contact-form h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.submit-btn:hover {
+    background-color: #6d28d9;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

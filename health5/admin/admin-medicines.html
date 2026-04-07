@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicines Management - MedRush Admin</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-header-container">
+            <!-- Logo -->
+            <div class="admin-logo">
+                <video class="logo-video" autoplay muted loop playsinline>
+                    <source src="../assets/logo2.mp4" type="video/mp4">
+                </video>
+                <h1>Admin Panel</h1>
+            </div>
+
+            <!-- Admin Navigation -->
+            <nav class="admin-nav">
+                <ul class="admin-nav-list">
+                    <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="admin-medicines.html" class="active"><i class="fas fa-pills"></i> Medicines</a></li>
+                    <li><a href="admin-orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="admin-users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin-reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <!-- Admin Controls -->
+            <div class="admin-controls">
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-content">
+            <div class="admin-profile">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-info">
+                    <h3>Admin User</h3>
+                    <p>admin@medrush.com</p>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <h4>Quick Actions</h4>
+                <ul>
+                    <li><a href="#add-medicine"><i class="fas fa-plus"></i> Add Medicine</a></li>
+                    <li><a href="#manage-categories"><i class="fas fa-tags"></i> Categories</a></li>
+                    <li><a href="#inventory"><i class="fas fa-warehouse"></i> Inventory</a></li>
+                    <li><a href="#bulk-import"><i class="fas fa-file-import"></i> Bulk Import</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Admin Content -->
+    <main class="admin-main">
+        <div class="admin-content">
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="header-content">
+                    <h2>Medicines Management</h2>
+                    <p>Manage your medicine inventory, add new products, and track stock levels</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="addMedicineBtn">
+                        <i class="fas fa-plus"></i> Add New Medicine
+                    </button>
+                    <button class="btn btn-success" id="importBtn">
+                        <i class="fas fa-file-import"></i> Import CSV
+                    </button>
+                </div>
+            </section>
+
+            <!-- Search and Filter -->
+            <section class="search-filter">
+                <div class="search-bar">
+                    <div class="search-input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="medicineSearch" placeholder="Search medicines by name, category, or manufacturer...">
+                    </div>
+                </div>
+                <div class="filter-controls">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="pain-relief">Pain Relief</option>
+                        <option value="antibiotics">Antibiotics</option>
+                        <option value="vitamins">Vitamins</option>
+                        <option value="cold-cough">Cold & Cough</option>
+                        <option value="diabetes">Diabetes</option>
+                    </select>
+                    <select id="stockFilter">
+                        <option value="">All Stock Levels</option>
+                        <option value="in-stock">In Stock</option>
+                        <option value="low-stock">Low Stock</option>
+                        <option value="out-of-stock">Out of Stock</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Add Medicine Form (Hidden by default) -->
+            <section class="admin-form" id="addMedicineForm" style="display: none;">
+                <h3>Add New Medicine</h3>
+                <form id="medicineForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="medicineName">Medicine Name *</label>
+                            <input type="text" id="medicineName" name="medicineName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="pain-relief">Pain Relief</option>
+                                <option value="antibiotics">Antibiotics</option>
+                                <option value="vitamins">Vitamins</option>
+                                <option value="cold-cough">Cold & Cough</option>
+                                <option value="diabetes">Diabetes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="manufacturer">Manufacturer *</label>
+                            <input type="text" id="manufacturer" name="manufacturer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price (₹) *</label>
+                            <input type="number" id="price" name="price" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="stock">Stock Quantity *</label>
+                            <input type="number" id="stock" name="stock" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="minStock">Minimum Stock Level</label>
+                            <input type="number" id="minStock" name="minStock" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="date" id="expiryDate" name="expiryDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="prescription">Prescription Required</label>
+                            <select id="prescription" name="prescription">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Medicine</button>
+                        <button type="button" class="btn btn-danger" id="cancelAddBtn">Cancel</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Medicines Table -->
+            <section class="admin-table">
+                <div class="table-header">
+                    <h3>Medicines Inventory</h3>
+                    <div class="table-actions">
+                        <button class="btn btn-success" id="exportBtn">
+                            <i class="fas fa-file-export"></i> Export
+                        </button>
+                    </div>
+                </div>
+                
+                <table id="medicinesTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Medicine Name</th>
+                            <th>Category</th>
+                            <th>Manufacturer</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#MED001</td>
+                            <td>Paracetamol 500mg</td>
+                            <td>Pain Relief</td>
+                            <td>Cipla Ltd</td>
+                            <td>₹45.00</td>
+                            <td>
+                                <span class="stock-status in-stock">150</span>
+                            </td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <button class="action-btn view-btn" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#MED002</td>
+                            <td>Aspirin 75mg</td>
+                            <td>Pain Relief</td>
+                            <td>Sun Pharma</td>
+                            <td>₹35.00</td>
+                            <td>
+                                <span class="stock-status low-stock">25</span>
+                            </td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <button class="action-btn view-btn" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#MED003</td>
+                            <td>Vitamin D3 1000 IU</td>
+                            <td>Vitamins</td>
+                            <td>Dabur</td>
+                            <td>₹120.00</td>
+                            <td>
+                                <span class="stock-status out-of-stock">0</span>
+                            </td>
+                            <td><span class="status inactive">Inactive</span></td>
+                            <td>
+                                <button class="action-btn view-btn" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#MED004</td>
+                            <td>Ibuprofen 400mg</td>
+                            <td>Pain Relief</td>
+                            <td>Lupin</td>
+                            <td>₹55.00</td>
+                            <td>
+                                <span class="stock-status in-stock">200</span>
+                            </td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <button class="action-btn view-btn" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#MED005</td>
+                            <td>Cough Syrup 100ml</td>
+                            <td>Cold & Cough</td>
+                            <td>Himalaya</td>
+                            <td>₹85.00</td>
+                            <td>
+                                <span class="stock-status in-stock">75</span>
+                            </td>
+                            <td><span class="status active">Active</span></td>
+                            <td>
+                                <button class="action-btn view-btn" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Inventory Summary -->
+            <section class="inventory-summary">
+                <h3>Inventory Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h4>Total Products</h4>
+                            <p class="summary-number">248</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h4>In Stock</h4>
+                            <p class="summary-number">195</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h4>Low Stock</h4>
+                            <p class="summary-number">42</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h4>Out of Stock</h4>
+                            <p class="summary-number">11</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Admin Footer -->
+    <footer class="admin-footer">
+        <div class="admin-footer-content">
+            <p>&copy; 2026 MedRush Admin Panel. All rights reserved.</p>
+            <div class="admin-footer-links">
+                <a href="#">Help</a>
+                <a href="#">Documentation</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="admin-auth.js"></script>
+    <script src="admin-medicines.js"></script>
+</body>
+</html>

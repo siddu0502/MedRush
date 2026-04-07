@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedRush</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Fixed Header -->i
+    <header class="header" id="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <video class="logo-video" autoplay muted loop playsinline>
+                    <source src="assets/logo2.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="orders.html">My orders</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Smart Search Bar -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input id="globalSearch" class="global-search-input" type="search" placeholder="Search medicines on this page..." aria-label="Search medicines on this page" />
+                    <button class="search-btn" id="globalSearchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Right Side Controls -->
+            <div class="header-controls">
+                <!-- User Login Icon -->
+                <button class="user-btn" id="userBtn" title="Login">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <select id="languageSelect" class="language-select" title="Select Language">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="te">Telugu</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="cart-hero">
+            <h1 id="heroTitle">Welcome to MedRush</h1>
+            <p id="heroSubtitle">Your trusted online healthcare platform</p>
+        </section>
+    </main>
+
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+        <div class="banner-container">
+            <div class="banner-content">
+                <div class="hero-actions-row">
+                    <div class="hero-animated-text">
+                        <p class="animated-line line1">For your</p>
+                        <p class="animated-line line2">Aid,</p>
+                        <p class="animated-line line3">From our</p>
+                        <p class="animated-line line4">End!!!</p>
+                    </div>
+
+                    <div class="right-content">
+                        <div class="service-buttons">
+                            <a href="medicine.html" class="service-btn medicine-btn" id="medicineBtn" data-category="medicines">
+                                <i class="fas fa-pills"></i>
+                                <span id="medicineText">Medicine</span>
+                            </a>
+                            <a href="generic.html" class="service-btn generic-btn" id="genericBtn" data-category="medicines">
+                                <i class="fas fa-capsules"></i>
+                                <span id="genericText">Generic</span>
+                            </a>
+                            <button class="service-btn homeopathy-btn" id="homeopathyBtn" data-category="medicines">
+                                <i class="fas fa-prescription-bottle"></i>
+                                <span id="homeopathyText">Homeopathy</span>
+                            </button>
+                            <button class="service-btn labtest-btn" id="labtestBtn" data-category="tests">
+                                <i class="fas fa-flask"></i>
+                                <span id="labtestText">Lab Test</span>
+                            </button>
+                            <button class="service-btn nutrition-btn" data-category="health">
+                                <i class="fas fa-apple-alt"></i>
+                                <span id="nutritionText">Nutrition Med</span>
+                            </button>
+                            <button class="service-btn doctor-btn" data-category="consult">
+                                <i class="fas fa-phone-alt"></i>
+                                <span id="doctorText">Call Your Doctor</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>MedRush</h3>
+                <p id="footerDescription">Your trusted online healthcare platform providing medicines, lab tests, and doctor consultation.</p>
+            </div>
+            <div class="footer-col">
+                <h3 id="footerQuickLinks">Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="medicine.html">Medicines</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 id="footerContact">Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone-alt"></i> +91 8500333358</li>
+                    <li><i class="fas fa-envelope"></i> support@medrush.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" id="footerCopyright"> 2026 MedRush. All rights reserved.</div>
+    </footer>
+    <button class="talk-button" id="talkButton">Talk</button>
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 id="loginTitle">Login with Phone</h2>
+            <form class="login-form">
+                <div class="form-group" id="loginPhoneGroup">
+                    <label for="loginPhone" id="phoneLabel">Mobile Number</label>
+                    <input type="tel" id="loginPhone" placeholder="Enter 10-digit mobile number" inputmode="numeric" maxlength="10" pattern="[0-9]*" required>
+                </div>
+                <div class="form-group" id="loginOtpGroup" style="display: none;">
+                    <label for="loginOtp" id="otpLabel">OTP</label>
+                    <input type="tel" id="loginOtp" placeholder="Enter 4-digit OTP" pattern="[0-9]{4}">
+                    <small id="otpInfo">OTP will be sent to your phone.</small>
+                </div>
+                <button type="submit" class="btn-submit" id="loginBtn">Continue</button>
+                <p id="signupText">
+                    Don't have an account? <a href="#" id="signupLink">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="search.js"></script>
+    <script src="script.js"></script>
