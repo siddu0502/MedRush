@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MedRush</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="checkout.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <video class="logo-video" autoplay muted loop playsinline>
+                    <source src="../assets/logo2.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="orders.html">My orders</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Smart Search Bar -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input id="globalSearch" class="global-search-input" type="search" placeholder="Search medicines on this page..." aria-label="Search medicines on this page" />
+                    <button class="search-btn" id="globalSearchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Right Side Controls -->
+            <div class="header-controls">
+                <!-- User Login Icon -->
+                <button class="user-btn" id="userBtn" title="Login">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <select id="languageSelect" class="language-select" title="Select Language">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="te">Telugu</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Hero -->
+    <section class="checkout-hero">
+        <h1 id="heroTitle">Checkout</h1>
+        <p id="heroSubtitle">Complete your order</p>
+    </section>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section">
+        <div class="checkout-container">
+            <div class="checkout-left">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div id="orderItems"></div>
+                    <div class="order-total">
+                        <div class="total-breakdown">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">₹0.00</span>
+                        </div>
+                        <div class="total-breakdown">
+                            <span>Shipping:</span>
+                            <span style="color: var(--success-color);">FREE</span>
+                        </div>
+                        <div class="total-final">
+                            <span>Total:</span>
+                            <span id="finalTotal">₹0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Information -->
+                <div class="delivery-info">
+                    <h2>Delivery Information</h2>
+                    <form id="checkoutForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="+91 9876543210" pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Delivery Address *</label>
+                            <textarea id="address" name="address" required placeholder="123 Main Street, Apt 4B, City, State - 123456" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required placeholder="Mumbai">
+                            </div>
+                            <div class="form-group">
+                                <label for="pincode">PIN Code *</label>
+                                <input type="text" id="pincode" name="pincode" required placeholder="400001" pattern="[0-9]{6}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="checkout-right">
+                <!-- Payment Method -->
+                <div class="payment-method">
+                    <h2>Payment Method</h2>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <div class="payment-card">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <div>
+                                    <strong>Cash on Delivery</strong>
+                                    <p>Pay when you receive your order</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card">
+                            <div class="payment-card">
+                                <i class="fas fa-credit-card"></i>
+                                <div>
+                                    <strong>Credit/Debit Card</strong>
+                                    <p>Pay securely with your card</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="upi">
+                            <div class="payment-card">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div>
+                                    <strong>UPI Payment</strong>
+                                    <p>Pay with any UPI app</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Card Details (Hidden by default) -->
+                    <div id="cardDetails" class="card-details" style="display: none;">
+                        <h3>Card Details</h3>
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry">Expiry Date</label>
+                                <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123" maxlength="3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UPI Details (Hidden by default) -->
+                    <div id="upiDetails" class="upi-details" style="display: none;">
+                        <h3>UPI Details</h3>
+                        <div class="form-group">
+                            <label for="upiId">UPI ID</label>
+                            <input type="text" id="upiId" placeholder="yourname@upi">
+                        </div>
+                        <div class="upi-apps">
+                            <p>Choose your UPI app:</p>
+                            <div class="app-buttons">
+                                <button type="button" class="upi-app-btn" data-app="gpay">
+                                    <i class="fab fa-google-pay"></i> Google Pay
+                                </button>
+                                <button type="button" class="upi-app-btn" data-app="phonepe">
+                                    <i class="fas fa-phone"></i> PhonePe
+                                </button>
+                                <button type="button" class="upi-app-btn" data-app="paytm">
+                                    <i class="fas fa-wallet"></i> Paytm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Order Button -->
+                <button type="submit" form="checkoutForm" class="place-order-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    Place Order
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Processing Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="payment-processing">
+                <div class="spinner"></div>
+                <h3>Processing Payment...</h3>
+                <p>Please wait while we process your order</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>Order Placed Successfully!</h3>
+                <p>Your order has been placed and will be delivered soon.</p>
+                <div class="order-details">
+                    <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+                    <p><strong>Estimated Delivery:</strong> <span id="deliveryDate"></span></p>
+                </div>
+                <div class="success-actions">
+                    <button onclick="window.location.href='orders.html'" class="view-orders-btn">View Orders</button>
+                    <button onclick="window.location.href='index.html'" class="continue-shopping-btn">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>MedRush</h3>
+                <p>Your trusted online healthcare platform providing medicines, lab tests, and doctor consultation.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="medicine.html">Medicines</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone-alt"></i> +91 8500333358</li>
+                    <li><i class="fas fa-envelope"></i> support@medrush.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"> 2026 MedRush. All rights reserved.</div>
+    </footer>
+    <button class="talk-button" id="talkButton">Talk</button>
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 id="loginTitle">Login with Phone</h2>
+            <form class="login-form">
+                <div class="form-group" id="loginPhoneGroup">
+                    <label for="loginPhone" id="phoneLabel">Mobile Number</label>
+                    <input type="tel" id="loginPhone" placeholder="Enter 10-digit mobile number" inputmode="numeric" maxlength="10" pattern="[0-9]*" required>
+                </div>
+                <div class="form-group" id="loginOtpGroup" style="display: none;">
+                    <label for="loginOtp" id="otpLabel">OTP</label>
+                    <input type="tel" id="loginOtp" placeholder="Enter 4-digit OTP" pattern="[0-9]{4}">
+                    <small id="otpInfo">OTP will be sent to your phone.</small>
+                </div>
+                <button type="submit" class="btn-submit" id="loginBtn">Continue</button>
+                <p id="signupText">
+                    Don't have an account? <a href="#" id="signupLink">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="search.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

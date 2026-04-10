@@ -1,0 +1,226 @@
+/* Orders Page Specific Styles */
+
+/* Search and Filter Section */
+.search-filter {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-filter .form-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+/* Customer Info Display */
+.customer-info {
+    line-height: 1.4;
+}
+
+.customer-info strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.customer-info small {
+    color: #666;
+    display: block;
+}
+
+/* Medicines List */
+.medicines-list {
+    line-height: 1.4;
+    font-size: 0.9rem;
+}
+
+.medicines-list .medicine-item {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* Payment Method Badge */
+.payment-method {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+    background: #e9ecef;
+    color: #495057;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: var(--admin-card-bg);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e1e8ed;
+    background: #f8f9fa;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-header h3 {
+    font-size: 1.3rem;
+    color: var(--admin-primary);
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    background-color: #f0f0f0;
+    color: #e74c3c;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+/* Order Details Styles */
+.order-detail-section {
+    margin-bottom: 2rem;
+}
+
+.order-detail-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--admin-primary);
+    border-bottom: 2px solid var(--admin-primary);
+    padding-bottom: 0.5rem;
+}
+
+.order-detail-section p {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.order-detail-section strong {
+    color: var(--admin-primary);
+}
+
+/* Bulk Actions */
+.bulk-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Order Status Timeline */
+.status-timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 1rem 0;
+}
+
+.status-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e1e8ed;
+}
+
+.status-timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.status-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.25rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--admin-primary);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px #e1e8ed;
+}
+
+.status-timeline-item.completed::before {
+    background: var(--success-color);
+}
+
+.status-timeline-item.pending::before {
+    background: #f59e0b;
+}
+
+.status-timeline-content {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e1e8ed;
+}
+
+.status-timeline-content h5 {
+    margin-bottom: 0.25rem;
+    color: var(--admin-primary);
+}
+
+.status-timeline-content small {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-filter .form-group {
+        min-width: auto;
+    }
+    
+    .modal-content {
+        margin: 2% auto;
+        width: 95%;
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .bulk-actions {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MedRush</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <video class="logo-video" autoplay muted loop playsinline>
+                    <source src="../assets/logo2.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="orders.html">My orders</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Smart Search Bar -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input id="globalSearch" class="global-search-input" type="search" placeholder="Search medicines on this page..." aria-label="Search medicines on this page" />
+                    <button class="search-btn" id="globalSearchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Right Side Controls -->
+            <div class="header-controls">
+                <!-- User Login Icon -->
+                <button class="user-btn" id="userBtn" title="Login">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <select id="languageSelect" class="language-select" title="Select Language">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="te">Telugu</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <h1 id="heroTitle">Contact Us</h1>
+        <p id="heroSubtitle">Get in touch with our support team</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>support@medrush.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Address</h3>
+                        <p>123 Health Street<br>Medical City, MC 12345</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>Hours</h3>
+                        <p>Mon-Fri: 9AM-6PM<br>Sat-Sun: 10AM-4PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Send us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>MedRush</h3>
+                <p>Your trusted online healthcare platform providing medicines, lab tests, and doctor consultation.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="medicine.html">Medicines</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone-alt"></i> +91 8500333358</li>
+                    <li><i class="fas fa-envelope"></i> support@medrush.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 MedRush. All rights reserved.</div>
+    </footer>
+    <button class="talk-button" id="talkButton">Talk</button>
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 id="loginTitle">Login with Phone</h2>
+            <form class="login-form">
+                <div class="form-group" id="loginPhoneGroup">
+                    <label for="loginPhone" id="phoneLabel">Mobile Number</label>
+                    <input type="tel" id="loginPhone" placeholder="Enter 10-digit mobile number" inputmode="numeric" maxlength="10" pattern="[0-9]*" required>
+                </div>
+                <div class="form-group" id="loginOtpGroup" style="display: none;">
+                    <label for="loginOtp" id="otpLabel">OTP</label>
+                    <input type="tel" id="loginOtp" placeholder="Enter 4-digit OTP" pattern="[0-9]{4}">
+                    <small id="otpInfo">OTP will be sent to your phone.</small>
+                </div>
+                <button type="submit" class="btn-submit" id="loginBtn">Continue</button>
+                <p id="signupText">
+                    Don't have an account? <a href="#" id="signupLink">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="search.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html>

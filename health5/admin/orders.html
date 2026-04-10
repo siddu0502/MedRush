@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Management - MedRush Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="orders.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    <style>
+        .notification-bell { position: relative; margin-right: 10px; cursor: pointer; }
+        .notification-bell i { font-size: 20px; }
+        .notification-count { position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; }
+    </style></head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-header-container">
+            <!-- Logo -->
+            <div class="admin-logo">
+                <video class="logo-video" autoplay muted loop playsinline>
+                    <source src="../assets/logo2.mp4" type="video/mp4">
+                </video>
+                
+            </div>
+
+            <!-- Admin Navigation -->
+            <nav class="admin-nav">
+                <ul class="admin-nav-list">
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="medicines.html"><i class="fas fa-pills"></i> Medicines</a></li>
+                    <li><a href="orders.html" class="active"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <!-- Admin Controls -->
+            <div class="admin-controls">
+                <a href="../customer/index.html" class="customer-link" target="_blank">
+                    <i class="fas fa-store"></i> View Store
+                </a>
+                <div class="notification-bell" onclick="window.location.href='orders.html'">
+                    <i class="fas fa-bell"></i>
+                    <span id="notification-count">0</span>
+                </div>
+                <button class="admin-logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    
+    <!-- Main Admin Content -->
+    <main class="admin-main">
+        <div class="admin-content">
+            <!-- Page Header -->
+            <section class="admin-hero">
+                <h1>Orders Management</h1>
+                <p>Manage customer orders and delivery status</p>
+            </section>
+
+            <!-- Order Statistics -->
+            <div class="admin-card">
+                <h3>Order Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Orders</h3>
+                            <p class="stat-number">1,847</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Pending</h3>
+                            <p class="stat-number">47</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Processing</h3>
+                            <p class="stat-number">28</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Delivered</h3>
+                            <p class="stat-number">1,772</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="admin-card">
+                <h3>Search & Filter</h3>
+                <div class="search-filter">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search orders..." id="searchOrder" onkeyup="searchOrders()">
+                    </div>
+                    <div class="form-group">
+                        <select id="filterStatus" onchange="filterOrders()">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="filterDate" onchange="filterOrders()">
+                            <option value="">All Dates</option>
+                            <option value="today">Today</option>
+                            <option value="yesterday">Yesterday</option>
+                            <option value="this-week">This Week</option>
+                            <option value="this-month">This Month</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="admin-card" id="view-orders">
+                <h3>Recent Orders</h3>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Medicines</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <tr>
+                                <td>#ORD-001</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <strong>Rahul Sharma</strong><br>
+                                        <small>+91 9876543210</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="medicines-list">
+                                        Paracetamol 500mg (2)<br>
+                                        Vitamin C 500mg (1)
+                                    </div>
+                                </td>
+                                <td>450.00</td>
+                                <td><span class="payment-method">COD</span></td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>2026-04-06</td>
+                                <td>
+                                    <button class="action-btn" title="View" onclick="viewOrder('ORD-001')"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn" title="Update Status" onclick="updateOrderStatus('ORD-001')"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-002</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <strong>Priya Patel</strong><br>
+                                        <small>+91 9876543211</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="medicines-list">
+                                        Aspirin 75mg (1)<br>
+                                        Cough Syrup 100ml (1)
+                                    </div>
+                                </td>
+                                <td>320.00</td>
+                                <td><span class="payment-method">Card</span></td>
+                                <td><span class="status processing">Processing</span></td>
+                                <td>2026-04-06</td>
+                                <td>
+                                    <button class="action-btn" title="View" onclick="viewOrder('ORD-002')"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn" title="Update Status" onclick="updateOrderStatus('ORD-002')"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-003</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <strong>Amit Kumar</strong><br>
+                                        <small>+91 9876543212</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="medicines-list">
+                                        Ibuprofen 400mg (1)<br>
+                                        Vitamin D3 1000 IU (1)
+                                    </div>
+                                </td>
+                                <td>580.00</td>
+                                <td><span class="payment-method">UPI</span></td>
+                                <td><span class="status delivered">Delivered</span></td>
+                                <td>2026-04-05</td>
+                                <td>
+                                    <button class="action-btn" title="View" onclick="viewOrder('ORD-003')"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn" title="Update Status" onclick="updateOrderStatus('ORD-003')"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Order Details Modal -->
+            <div id="orderModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Order Details</h3>
+                        <button class="modal-close" onclick="closeOrderModal()">&times;</button>
+                    </div>
+                    <div class="modal-body" id="orderModalContent">
+                        <!-- Order details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bulk Actions -->
+            <div class="admin-card">
+                <h3>Bulk Actions</h3>
+                <div class="bulk-actions">
+                    <button class="btn btn-primary" onclick="exportOrders()">
+                        <i class="fas fa-download"></i> Export Orders
+                    </button>
+                    <button class="btn btn-success" onclick="bulkUpdateStatus()">
+                        <i class="fas fa-edit"></i> Bulk Update Status
+                    </button>
+                    <button class="btn btn-danger" onclick="bulkDelete()">
+                        <i class="fas fa-trash"></i> Bulk Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Admin Footer -->
+    <footer class="admin-card" style="text-align: center; margin-top: 2rem;">
+        <p>&copy; 2026 MedRush Admin Panel. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="admin.js"></script>
+    <script src="orders.js"></script>
+</body>
+</html>
