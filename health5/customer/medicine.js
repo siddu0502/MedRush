@@ -2,17 +2,28 @@ const MEDICINE_STORAGE_KEY = 'medicineCatalog';
 
 function loadMedicineCatalog() {
     const stored = localStorage.getItem(MEDICINE_STORAGE_KEY);
-    if (!stored) {
-        localStorage.setItem(MEDICINE_STORAGE_KEY, JSON.stringify(defaultMedicineData));
-        return defaultMedicineData;
+    
+    // If medicines exist in storage, use them (these could be added by admin)
+    if (stored) {
+        try {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                return parsed;
+            }
+        } catch (error) {
+            console.error('Error parsing stored medicines:', error);
+        }
     }
-
-    try {
-        const parsed = JSON.parse(stored);
-        return Array.isArray(parsed) ? parsed : defaultMedicineData;
-    } catch (error) {
-        return defaultMedicineData;
-    }
+    
+    // If no stored medicines, use default data
+    const enhanced = defaultMedicineData.map(m => ({
+        ...m,
+        stock: m.isAvailable ? 50 : 0,
+        status: m.isAvailable ? 'active' : 'inactive',
+        category: m.category || 'general'
+    }));
+    localStorage.setItem(MEDICINE_STORAGE_KEY, JSON.stringify(enhanced));
+    return enhanced;
 }
 
 function saveMedicineCatalog(items) {
@@ -84,7 +95,9 @@ const defaultMedicineData = [
     // Z
     { id: 51, name: 'Zentel Tablet', type: 'capsule', meta: '1 tablet', manufacturer: 'GSK Pharma', composition: 'Albendazole (400mg)', price: 8.5, isAvailable: true }
 ];
+// Load medicines and set up listeners for updates from admin
 let medicines = loadMedicineCatalog();
+
 // DOM elements
 const searchInput = document.getElementById('medicineSearch');
 const medicinesGrid = document.getElementById('medicinesGrid');
@@ -98,9 +111,28 @@ let activeLetter = 'All';
 let cart = JSON.parse(localStorage.getItem('pharmacyCart')) || [];
 updateCartCount();
 
+// Listen for storage changes (when admin adds medicines)
+window.addEventListener('storage', (event) => {
+    if (event.key === MEDICINE_STORAGE_KEY) {
+        console.log('Medicines updated by admin, refreshing view...');
+        medicines = loadMedicineCatalog();
+        updateMedicines();
+    }
+});
+
+// Reload medicines periodically to check for updates from admin
+setInterval(() => {
+    const updatedMedicines = loadMedicineCatalog();
+    if (JSON.stringify(updatedMedicines) !== JSON.stringify(medicines)) {
+        console.log('New medicines detected, updating display...');
+        medicines = updatedMedicines;
+        updateMedicines();
+    }
+}, 3000); // Check every 3 seconds
+
 // Render medicines with modern design and SVG icons
 function renderMedicines(medicinesToShow) {
-    const visibleList = medicinesToShow.filter(med => med.isAvailable);
+    const visibleList = medicinesToShow.filter(med => med.isAvailable || med.stock > 0 || med.status === 'active');
     medicinesGrid.innerHTML = '';
 
     if (visibleList.length === 0) {
@@ -113,11 +145,26 @@ function renderMedicines(medicinesToShow) {
             card.className = 'medicine-card';
             
             const isInCart = cart.some(item => item.id === medicine.id);
-            const availabilityHtml = medicine.isAvailable 
+            const isAvailable = medicine.isAvailable !== false && medicine.stock > 0 && medicine.status === 'active';
+            
+            // Get category display name
+            const categoryMap = {
+                'pain-relief': '💊 Pain Relief',
+                'vitamins': '💉 Vitamins',
+                'cold-cough': '🤒 Cold & Cough',
+                'antibiotics': '⚕️ Antibiotics',
+                'diabetes': '🩺 Diabetes',
+                'general': '💊 General Medicine'
+            };
+            const categoryDisplay = categoryMap[medicine.category] || (medicine.category || '💊 General Medicine');
+            
+            const availabilityHtml = isAvailable 
                 ? `<button class="add-to-cart-btn" data-id="${medicine.id}" ${isInCart ? 'disabled' : ''}>
                        ${isInCart ? '<i class="fas fa-check"></i> ADDED' : '<i class="fas fa-shopping-cart"></i> ADD TO CART'}
                    </button>`
                 : `<span class="not-available">NOT AVAILABLE</span>`;
+            
+            const stockDisplay = medicine.stock ? `(Stock: ${medicine.stock})` : '';
             
             card.innerHTML = `
                 <div class="medicine-main">
@@ -127,12 +174,14 @@ function renderMedicines(medicinesToShow) {
                         </svg>
                     </div>
                     <div class="medicine-details">
+                        <div class="medicine-category">${categoryDisplay}</div>
                         <h3 class="medicine-name">${medicine.name}</h3>
                         <span class="prescription-tag">Rx Prescription Required</span>
-                        <div class="product-meta">${medicine.meta}</div>
-                        <div class="product-meta">Manufacturer: ${medicine.manufacturer}</div>
-                        <div class="product-meta">Composition: ${medicine.composition}</div>
-                        <div class="medicine-price">₹ ${medicine.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                        <div class="product-meta">${medicine.meta || 'Medicine'}</div>
+                        ${medicine.manufacturer ? `<div class="product-meta">Manufacturer: ${medicine.manufacturer}</div>` : ''}
+                        ${medicine.composition ? `<div class="product-meta">Composition: ${medicine.composition}</div>` : ''}
+                        ${medicine.description ? `<div class="product-meta">Description: ${medicine.description}</div>` : ''}
+                        <div class="medicine-price">₹ ${medicine.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${stockDisplay}</div>
                     </div>
                 </div>
                 <div class="medicine-footer">

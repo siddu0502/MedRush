@@ -264,6 +264,21 @@
     flex-grow: 1;
 }
 
+.medicine-category {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #17a2b8, #0c7d9d);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    align-self: flex-start;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(23, 162, 184, 0.2);
+}
+
 .medicine-name {
     font-size: 1.1rem;
     font-weight: 600;

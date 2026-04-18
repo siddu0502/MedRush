@@ -1,0 +1,228 @@
+/* Users Page Specific Styles */
+
+/* Search and Filter Section */
+.search-filter {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-filter .form-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+/* User Info Display */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar-small {
+    width: 40px;
+    height: 40px;
+    background: var(--admin-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.user-details {
+    flex: 1;
+}
+
+.user-details strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--admin-primary);
+}
+
+.user-details small {
+    color: #666;
+    display: block;
+    font-size: 0.8rem;
+}
+
+/* Contact Info */
+.contact-info {
+    line-height: 1.4;
+}
+
+.contact-info small {
+    color: #666;
+    display: block;
+    font-size: 0.8rem;
+}
+
+/* Role Badges */
+.role-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.role-badge.customer {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.role-badge.admin {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.role-badge.staff {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+/* Date Info */
+.date-info {
+    line-height: 1.4;
+}
+
+.date-info small {
+    color: #666;
+    display: block;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* User Status Indicators */
+.user-status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-status-indicator.online::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--success-color);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.user-status-indicator.offline::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #666;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* User Activity Graph */
+.user-activity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.activity-bar {
+    width: 60px;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.activity-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--admin-primary) 0%, var(--success-color) 100%);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+/* Bulk Actions */
+.bulk-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* User Permissions */
+.permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.permission-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e1e8ed;
+}
+
+.permission-item input[type="checkbox"] {
+    margin: 0;
+}
+
+/* User Statistics */
+.user-stats-mini {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.stat-mini {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #e1e8ed;
+}
+
+.stat-mini strong {
+    color: var(--admin-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-filter .form-group {
+        min-width: auto;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .bulk-actions {
+        flex-direction: column;
+    }
+    
+    .permissions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .user-stats-mini {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}

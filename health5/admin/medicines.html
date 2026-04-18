@@ -3,125 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Medicines - MedRush</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>Medicines Management - MedRush Admin</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="medicines.css">
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body data-admin-page="medicines">
-    <header class="header" id="header">
-        <div class="header-container">
-            <div class="logo">
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-header-container">
+            <!-- Logo -->
+            <div class="admin-logo">
                 <video class="logo-video" autoplay muted loop playsinline>
                     <source src="../assets/logo2.mp4" type="video/mp4">
                 </video>
             </div>
 
-            <nav class="nav-menu" id="navMenu">
-                <ul class="nav-list">
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="orders.html">Orders</a></li>
-                    <li><a href="medicines.html" class="active">Medicines</a></li>
-                    <li><a href="../index.html">Customer Site</a></li>
+            <!-- Admin Navigation -->
+            <nav class="admin-nav">
+                <ul class="admin-nav-list">
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="medicines.html" class="active"><i class="fas fa-pills"></i> Medicines</a></li>
+                    <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                 </ul>
             </nav>
 
-            <div class="nav-search">
-                <div class="search-container">
-                    <input id="globalSearch" class="global-search-input" type="search" placeholder="Search admin page..." aria-label="Search admin page" />
-                    <button class="search-btn" id="globalSearchBtn"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-
-            <div class="header-controls">
-                <button class="user-btn" id="userBtn" title="Login">
-                    <i class="fas fa-user-circle"></i>
+            <!-- Admin Controls -->
+            <div class="admin-controls">
+                <a href="../customer/index.html" class="customer-link" target="_blank">
+                    <i class="fas fa-store"></i> View Store
+                </a>
+                <button class="admin-logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
-                <select id="languageSelect" class="language-select" title="Select Language">
-                    <option value="en">English</option>
-                    <option value="hi">Hindi</option>
-                    <option value="te">Telugu</option>
-                </select>
             </div>
         </div>
     </header>
 
-    <main class="admin-content">
-        <section class="admin-section">
-            <div class="admin-section-header">
-                <h2>Medicine Catalog</h2>
-                <p>Toggle which medicines are visible to customers and manage live catalog visibility.</p>
+    
+    <!-- Main Admin Content -->
+    <main class="admin-main">
+        <div class="admin-content">
+            <!-- Page Header -->
+            <section class="admin-hero">
+                <h1>Medicines Management</h1>
+                <p>Manage your medicine inventory and catalog</p>
+            </section>
+
+            <!-- Add Medicine Form -->
+            <div class="admin-card" id="add-medicine">
+                <h3>Add New Medicine</h3>
+                <form class="admin-form" onsubmit="addOrUpdateMedicine(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="medicineName">Medicine Name</label>
+                            <input type="text" id="medicineName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="medicineCategory">Category</label>
+                            <select id="medicineCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="pain-relief">Pain Relief</option>
+                                <option value="vitamins">Vitamins</option>
+                                <option value="cold-cough">Cold & Cough</option>
+                                <option value="antibiotics">Antibiotics</option>
+                                <option value="diabetes">Diabetes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="medicinePrice">Price (Rs)</label>
+                            <input type="number" id="medicinePrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="medicineStock">Stock Quantity</label>
+                            <input type="number" id="medicineStock" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineDescription">Description</label>
+                        <textarea id="medicineDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-danger" onclick="resetForm()">Reset</button>
+                        <button type="submit" class="btn btn-primary">Add Medicine</button>
+                    </div>
+                </form>
             </div>
-            <div class="admin-medicine-toolbar">
-                <div class="admin-filter">
-                    <input type="search" id="adminMedicineSearch" placeholder="Search medicines..." aria-label="Search medicines" />
-                    <button id="adminMedicineSearchBtn"><i class="fas fa-search"></i></button>
+
+            <!-- Search and Filter -->
+            <div class="admin-card">
+                <h3>Search & Filter</h3>
+                <div class="search-filter">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search medicines..." id="searchMedicine" onkeyup="searchMedicines()">
+                    </div>
+                    <div class="form-group">
+                        <select id="filterCategory" onchange="filterMedicines()">
+                            <option value="">All Categories</option>
+                            <option value="pain-relief">Pain Relief</option>
+                            <option value="vitamins">Vitamins</option>
+                            <option value="cold-cough">Cold & Cough</option>
+                            <option value="antibiotics">Antibiotics</option>
+                            <option value="diabetes">Diabetes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="filterStock" onchange="filterMedicines()">
+                            <option value="">All Stock Levels</option>
+                            <option value="in-stock">In Stock</option>
+                            <option value="low-stock">Low Stock</option>
+                            <option value="out-of-stock">Out of Stock</option>
+                        </select>
+                    </div>
                 </div>
-                <button id="saveMedicineChanges" class="btn-submit">Save Catalog</button>
             </div>
-            <div class="admin-summary-cards">
-                <div class="admin-card">
-                    <h3 id="availableMedicines">0 Visible</h3>
-                    <p>Medicines available in customer catalog.</p>
+
+            <!-- Inventory Summary -->
+            <div class="admin-card" id="inventory">
+                <h3>Inventory Summary</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Products</h3>
+                            <p class="stat-number">248</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>In Stock</h3>
+                            <p class="stat-number">195</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Low Stock</h3>
+                            <p class="stat-number">42</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Out of Stock</h3>
+                            <p class="stat-number">11</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="medicineCatalog" class="admin-medicine-grid"></div>
-        </section>
+
+            <!-- Medicines Table -->
+            <div class="admin-card">
+                <h3>Medicine Catalog</h3>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicinesTableBody">
+                            <tr>
+                                <td>MED-001</td>
+                                <td>Paracetamol 500mg</td>
+                                <td>Pain Relief</td>
+                                <td>45.00</td>
+                                <td>150</td>
+                                <td><span class="status active">In Stock</span></td>
+                                <td>
+                                    <button class="action-btn" title="Edit" onclick="editMedicine('MED-001')"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" title="Delete" onclick="deleteMedicine('MED-001')"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>MED-002</td>
+                                <td>Vitamin C 500mg</td>
+                                <td>Vitamins</td>
+                                <td>120.00</td>
+                                <td>25</td>
+                                <td><span class="status pending">Low Stock</span></td>
+                                <td>
+                                    <button class="action-btn" title="Edit" onclick="editMedicine('MED-002')"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" title="Delete" onclick="deleteMedicine('MED-002')"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>MED-003</td>
+                                <td>Aspirin 75mg</td>
+                                <td>Pain Relief</td>
+                                <td>35.00</td>
+                                <td>0</td>
+                                <td><span class="status cancelled">Out of Stock</span></td>
+                                <td>
+                                    <button class="action-btn" title="Edit" onclick="editMedicine('MED-003')"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" title="Delete" onclick="deleteMedicine('MED-003')"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>MedRush Admin</h3>
-                <p>Curate the medicine catalog from a single place.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="orders.html">Orders</a></li>
-                    <li><a href="../index.html">Customer Site</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Contact Us</h3>
-                <ul class="footer-contact">
-                    <li><i class="fas fa-phone-alt"></i> +91 8500333358</li>
-                    <li><i class="fas fa-envelope"></i> support@medrush.com</li>
-                    <li><i class="fas fa-map-marker-alt"></i> India</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">© 2026 MedRush. All rights reserved.</div>
+    <!-- Admin Footer -->
+    <footer class="admin-card" style="text-align: center; margin-top: 2rem;">
+        <p>&copy; 2026 MedRush Admin Panel. All rights reserved.</p>
     </footer>
 
-    <button class="talk-button" id="talkButton">Talk</button>
-
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2 id="loginTitle">Login with Phone</h2>
-            <form class="login-form">
-                <div class="form-group" id="loginPhoneGroup">
-                    <label for="loginPhone" id="phoneLabel">Mobile Number</label>
-                    <input type="tel" id="loginPhone" placeholder="Enter 10-digit mobile number" inputmode="numeric" maxlength="10" pattern="[0-9]*" required>
-                </div>
-                <div class="form-group" id="loginOtpGroup" style="display: none;">
-                    <label for="loginOtp" id="otpLabel">OTP</label>
-                    <input type="tel" id="loginOtp" placeholder="Enter 4-digit OTP" pattern="[0-9]{4}">
-                    <small id="otpInfo">OTP will be sent to your phone.</small>
-                </div>
-                <button type="submit" class="btn-submit" id="loginBtn">Continue</button>
-                <p id="signupText">
-                    Don't have an account? <a href="#" id="signupLink">Sign up</a>
-                </p>
-            </form>
-        </div>
-    </div>
-
-    <script src="../auth.js"></script>
-    <script src="../search.js"></script>
+    <!-- JavaScript -->
     <script src="admin.js"></script>
+    <script src="medicines.js"></script>
 </body>
 </html>

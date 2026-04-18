@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Management - MedRush Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="users.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-header-container">
+            <!-- Logo -->
+            <div class="admin-logo">
+                <video class="logo-video" autoplay muted loop playsinline>
+                    <source src="../assets/logo2.mp4" type="video/mp4">
+                </video>
+               
+            </div>
+
+            <!-- Admin Navigation -->
+            <nav class="admin-nav">
+                <ul class="admin-nav-list">
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="medicines.html"><i class="fas fa-pills"></i> Medicines</a></li>
+                    <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="users.html" class="active"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <!-- Admin Controls -->
+            <div class="admin-controls">
+                <a href="../customer/index.html" class="customer-link" target="_blank">
+                    <i class="fas fa-store"></i> View Store
+                </a>
+                <button class="admin-logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    
+    <!-- Main Admin Content -->
+    <main class="admin-main">
+        <div class="admin-content">
+            <!-- Page Header -->
+            <section class="admin-hero">
+                <h1>Users Management</h1>
+                <p>Manage user accounts and permissions</p>
+            </section>
+
+            <!-- User Statistics -->
+            <div class="admin-card">
+                <h3>User Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Users</h3>
+                            <p class="stat-number">3,291</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Active Users</h3>
+                            <p class="stat-number">2,847</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>New This Month</h3>
+                            <p class="stat-number">342</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-times"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Inactive</h3>
+                            <p class="stat-number">444</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add User Form -->
+            <div class="admin-card" id="manage-users">
+                <h3>Add New User</h3>
+                <form class="admin-form" onsubmit="addUser(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="userFirstName">First Name</label>
+                            <input type="text" id="userFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userLastName">Last Name</label>
+                            <input type="text" id="userLastName" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPhone">Phone</label>
+                            <input type="tel" id="userPhone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="userRole">Role</label>
+                            <select id="userRole" required>
+                                <option value="">Select Role</option>
+                                <option value="customer">Customer</option>
+                                <option value="staff">Staff</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="userStatus">Status</label>
+                            <select id="userStatus" required>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="blocked">Blocked</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-danger" onclick="resetUserForm()">Reset</button>
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="admin-card">
+                <h3>Search & Filter</h3>
+                <div class="search-filter">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search users..." id="searchUser" onkeyup="searchUsers()">
+                    </div>
+                    <div class="form-group">
+                        <select id="filterRole" onchange="filterUsers()">
+                            <option value="">All Roles</option>
+                            <option value="customer">Customer</option>
+                            <option value="staff">Staff</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="filterUserStatus" onchange="filterUsers()">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="blocked">Blocked</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="admin-card">
+                <h3>User List</h3>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Orders</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr>
+                                <td>USR-001</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar-small">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="user-details">
+                                            <strong>Rahul Sharma</strong><br>
+                                            <small>ID: USR-001</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="contact-info">
+                                        <small>rahul.sharma@email.com</small><br>
+                                        <small>+91 9876543210</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="role-badge customer">Customer</span>
+                                </td>
+                                <td><span class="status active">Active</span></td>
+                                <td><strong>24</strong></td>
+                                <td>
+                                    <div class="date-info">
+                                        2026-03-15<br>
+                                        <small>22 days ago</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="action-btn" title="View" onclick="viewUser('USR-001')"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn" title="Edit" onclick="editUser('USR-001')"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" title="Email" onclick="emailUser('USR-001')"><i class="fas fa-envelope"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>USR-002</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar-small">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="user-details">
+                                            <strong>Priya Patel</strong><br>
+                                            <small>ID: USR-002</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="contact-info">
+                                        <small>priya.patel@email.com</small><br>
+                                        <small>+91 9876543211</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="role-badge customer">Customer</span>
+                                </td>
+                                <td><span class="status active">Active</span></td>
+                                <td><strong>18</strong></td>
+                                <td>
+                                    <div class="date-info">
+                                        2026-02-20<br>
+                                        <small>47 days ago</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="action-btn" title="View" onclick="viewUser('USR-002')"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn" title="Edit" onclick="editUser('USR-002')"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" title="Email" onclick="emailUser('USR-002')"><i class="fas fa-envelope"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>USR-003</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar-small">
+                                            <i class="fas fa-user-tie"></i>
+                                        </div>
+                                        <div class="user-details">
+                                            <strong>Amit Kumar</strong><br>
+                                            <small>ID: USR-003</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="contact-info">
+                                        <small>amit.kumar@email.com</small><br>
+                                        <small>+91 9876543212</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="role-badge staff">Staff</span>
+                                </td>
+                                <td><span class="status active">Active</span></td>
+                                <td><strong>0</strong></td>
+                                <td>
+                                    <div class="date-info">
+                                        2026-01-10<br>
+                                        <small>87 days ago</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="action-btn" title="View" onclick="viewUser('USR-003')"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn" title="Edit" onclick="editUser('USR-003')"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" title="Email" onclick="emailUser('USR-003')"><i class="fas fa-envelope"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bulk Actions -->
+            <div class="admin-card">
+                <h3>Bulk Actions</h3>
+                <div class="bulk-actions">
+                    <button class="btn btn-primary" onclick="exportUsers()">
+                        <i class="fas fa-download"></i> Export Users
+                    </button>
+                    <button class="btn btn-success" onclick="bulkEmail()">
+                        <i class="fas fa-envelope"></i> Bulk Email
+                    </button>
+                    <button class="btn btn-danger" onclick="bulkDelete()">
+                        <i class="fas fa-trash"></i> Bulk Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Admin Footer -->
+    <footer class="admin-card" style="text-align: center; margin-top: 2rem;">
+        <p>&copy; 2026 MedRush Admin Panel. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="admin.js"></script>
+    <script src="users.js"></script>
+</body>
+</html>

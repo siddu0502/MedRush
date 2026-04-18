@@ -36,6 +36,12 @@ const updateCartCount = () => {
     }
 };
 
+// Hamburger Menu Toggle
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
 // User Login Button
 userBtn.addEventListener('click', () => {
     loginModal.classList.add('active');
@@ -247,27 +253,25 @@ const translations = {
         footerMedrush: 'Your trusted online healthcare platform providing medicines, lab tests, and doctor consultation.',
         footerQuickLinks: 'Quick Links',
         footerContact: 'Contact Us',
-        footerCopyright: '© 2026 MedRush. All rights reserved.'
+        footerCopyright: ' 2026 MedRush. All rights reserved.'
     },
     hi: {
-        heroTitle: 'मेडरश में आपका स्वागत है',
-        heroSubtitle: 'आपका भरोसेमंद ऑनलाइन हेल्थकेयर प्लेटफ़ॉर्म',
-        serviceSearchPlaceholder: 'दवाइयाँ, लैब टेस्ट खोजें...',
-        medicinText: 'दवा',
-        genericText: 'सामान्य',
-        homeopathyText: 'होम्योपैथी',
-        labtestText: 'लैब टेस्ट',
-        nutritionText: 'पोषण दवा',
-        doctorText: 'अपने डॉक्टर से बात करें',
-        contactTitle: 'हमसे संपर्क करें',
-        footerMedrush: 'दवाइयाँ, लैब टेस्ट और डॉक्टर परामर्श प्रदान करने वाला आपका भरोसेमंद ऑनलाइन हेल्थकेयर प्लेटफ़ॉर्म।',
-        footerQuickLinks: 'त्वरित लिंक',
-        footerContact: 'संपर्क करें',
-        footerCopyright: '© 2026 MedRush। सभी अधिकार सुरक्षित।'
+        heroTitle: '?????? ?? ????? ???',
+        heroSubtitle: '???? ??????????? ??????????? ???????????',
+        serviceSearchPlaceholder: 'Dawaiyan, lab test khojhein...',
+        medicinText: '????',
+        genericText: '??????',
+        homeopathyText: '????????',
+        labtestText: '???? ????',
+        nutritionText: '????? ????',
+        doctorText: '????? ?????? ????',
+        contactTitle: '????? ??? ????? ????',
+        footerMedrush: '???????, ????? ???? ?? ????? ????? ?????? ???? ?? ??????????? ???????????',
+        footerQuickLinks: '?????? ?????',
+        footerContact: '????? ????',
+        footerCopyright: ' 2026 MedRush. ??? ????? ??????'
     },
     te: {
-        heroTitle: 'MedRush కు స్వాగతం',
-        heroSubtitle: 'మీ నమ్మకమైన ఆన్‌లైన్ ఆరోగ్య సంరక్షణ ప్లాట్‌ఫారం',
         serviceSearchPlaceholder: 'మందులు, ల్యాబ్ పరీక్షలు శోధించండి...',
         medicinText: 'మందు',
         genericText: 'జనరల్',

@@ -1,4 +1,6 @@
 // DOM elements
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
 const cartItems = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
 const checkoutBtn = document.getElementById('checkoutBtn');
@@ -114,8 +116,6 @@ checkoutBtn.addEventListener('click', () => {
 });
 
 // Hamburger menu
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navMenu');
 if (hamburger) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
